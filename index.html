@@ -6,26 +6,43 @@
   <title>Penji Svenja Menzel – Heilpraktikerin</title>
   <meta name="description" content="Heilpraktikerin in Berlin Friedrichshain. Massage, Akupunktur und Shiatsu für Entspannung, Nervensystem beruhigen und Ressourcen spüren.">
 
-  <!-- Google Fonts: Questrial -->
+  <!-- Google Font: Questrial -->
   <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet" />
 
   <style>
+    :root {
+      --primary-color: #222;
+      --accent-color: #0077cc;
+      --gray-color: #777;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
       font-family: 'Questrial', sans-serif;
-      background-color: #ffffff;
-      color: #222;
+      background-color: #fff;
+      color: var(--primary-color);
     }
 
     main {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem 3rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 2rem;
       text-align: center;
+    }
+
+    p.lead {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--gray-color);
+      margin-bottom: 2.5rem;
     }
 
     img {
@@ -33,58 +50,92 @@
       height: auto;
       border-radius: 12px;
       filter: grayscale(100%);
+      margin-bottom: 2rem;
     }
 
     h1 {
-      font-size: 2rem;
-      margin: 1rem 0 0.25rem;
+      font-size: 2.2rem;
+      margin: 0.5rem 0;
     }
 
     h2 {
       font-size: 1.5rem;
-      margin: 0.5rem 0 1rem;
+      font-weight: 400;
+      color: var(--gray-color);
+      margin-bottom: 1.5rem;
     }
 
     p {
-      max-width: 600px;
-      margin: 0.5rem auto;
+      margin: 0.5rem 0;
       line-height: 1.6;
     }
 
+    .services {
+      font-size: 1.2rem;
+      margin: 1rem 0 3rem;
+    }
+
     .contact {
+      font-size: 1.05rem;
       margin-top: 2rem;
-      font-size: 1.1rem;
     }
 
     .contact a {
-      color: #0077cc;
+      color: var(--accent-color);
       text-decoration: none;
     }
 
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
     footer {
-      margin-top: 3rem;
+      text-align: center;
       font-size: 0.9rem;
-      color: #888;
+      color: #aaa;
+      padding: 2rem 1rem;
+      border-top: 1px solid #eee;
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding-top: 3rem;
+      }
+
+      img {
+        width: 80%;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      .services {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
+
   <main>
-    <p>Wahrnehmen &middot; Entschleunigen &middot; Pause &middot; Entspannen &middot; Nervensystem beruhigen &middot; Kraft sammeln &middot; Ressourcen sp&uuml;ren &middot; Stabilit&auml;t &middot; Autonomie &middot; Widerstandsf&auml;higkeit</p>
+    <p class="lead">
+      Wahrnehmen · Entschleunigen · Pause · Entspannen<br>Nervensystem beruhigen · Kraft sammeln · Ressourcen spüren<br>Stabilität · Autonomie · Widerstandsfähigkeit
+    </p>
 
     <img src="penji.webp" alt="Penji Svenja Menzel" />
 
     <h1>Penji Svenja Menzel</h1>
     <h2>Heilpraktikerin</h2>
-    <p>Massage | Akupunktur | Shiatsu</p>
+
+    <p class="services">Massage | Akupunktur | Shiatsu</p>
 
     <div class="contact">
       <p><strong>📞</strong> <a href="tel:+4917853986550">+49 178 5398650</a></p>
       <p><strong>✉️</strong> <a href="mailto:penji.praxis@posteo.de">penji.praxis@posteo.de</a></p>
-      <p>Mainzer Stra&szlig;e 16 | 10247 Berlin Friedrichshain</p>
-    </div>
-
-    <footer>&copy; 2025 Penji Svenja Menzel</footer>
-  </main>
-</body>
-</html>
+      <p>Mai
