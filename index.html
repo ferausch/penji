@@ -41,22 +41,15 @@
       color: var(--gray-color);
       margin-bottom: 2.25rem;
       max-width: 48rem;
+      padding: 0 2rem;
     }
 
     #hero-img {
       width: 300px;
       height: auto;
-      border-radius: 0;
       filter: grayscale(100%);
       margin-bottom: 1.25rem;
       display: block;
-    }
-
-    .fit-line {
-      white-space: nowrap;
-      display: inline-block;
-      margin: 0;
-      line-height: 1.1;
     }
 
     h1.fit-line {
@@ -72,14 +65,25 @@
       margin: 0.15rem 0 1.1rem;
     }
 
-    p.services.fit-line {
+    p.services {
       font-size: 1.2rem;
       margin: 0.4rem 0 2.2rem;
     }
 
     .contact {
       font-size: 1.05rem;
-      margin-top: 1.2rem;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .contact-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
     }
 
     .contact a {
@@ -107,67 +111,26 @@
 <body>
   <main>
     <p class="lead">
-      Wahrnehmen · Entschleunigen · Pause · Entspannen<br>
-      Nervensystem beruhigen · Kraft sammeln · Ressourcen spüren<br>
-      Stabilität · Autonomie · Widerstandsfähigkeit
+      Wahrnehmen · Entschleunigen · Pause · Entspannen · Nervensystem beruhigen · Kraft sammeln · Ressourcen spüren · Stabilität · Autonomie · Widerstandsfähigkeit
     </p>
 
     <img id="hero-img" src="penji.png" alt="Penji Svenja Menzel" />
 
     <h1 id="name-line" class="fit-line">Penji Svenja Menzel</h1>
     <h2>Heilpraktikerin</h2>
-    <p id="services-line" class="services fit-line">Massage | Akupunktur | Shiatsu</p>
+    <p id="services-line" class="services">Massage | Akupunktur | Shiatsu</p>
 
     <div class="contact">
-      <p><strong>✆</strong> <a href="tel:+4917853986550">+49 178 5398650</a>
-         &nbsp;&nbsp;&nbsp;&nbsp;
-         <strong>✉</strong> <a href="mailto:penji.praxis@posteo.de">penji.praxis@posteo.de</a>
-      </p>
-      <p>Mainzer Straße 16 | 10247 Berlin Friedrichshain</p>
+      <div class="contact-line">
+        <span>✆</span><a href="tel:+4917853986550">+49&nbsp;178&nbsp;5398650</a>
+      </div>
+      <div class="contact-line">
+        <span>✉</span><a href="mailto:penji.praxis@posteo.de">penji.praxis@posteo.de</a>
+      </div>
+      <p>Mainzer&nbsp;Straße&nbsp;16&nbsp;|&nbsp;10247&nbsp;Berlin&#8209;Friedrichshain</p>
     </div>
   </main>
 
   <footer>&copy; 2025 Penji Svenja Menzel</footer>
-
-  <script>
-    function fitLineToWidth(el, targetPx, min=10, max=160) {
-      if (!el) return;
-      const cs = window.getComputedStyle(el);
-      let fontSize = parseFloat(cs.fontSize) || 24;
-      const measure = () => {
-        const prev = el.style.visibility;
-        el.style.visibility = 'hidden';
-        el.style.fontSize = fontSize + 'px';
-        const w = el.scrollWidth;
-        el.style.visibility = prev;
-        return w;
-      };
-      let currentWidth = measure();
-      if (currentWidth === 0) return;
-      const scale = targetPx / currentWidth;
-      fontSize = Math.max(min, Math.min(max, fontSize * scale));
-      el.style.fontSize = fontSize + 'px';
-      for (let i = 0; i < 2; i++) {
-        currentWidth = el.scrollWidth;
-        if (currentWidth === 0) break;
-        const delta = targetPx / currentWidth;
-        fontSize = Math.max(min, Math.min(max, fontSize * delta));
-        el.style.fontSize = fontSize + 'px';
-      }
-    }
-
-    function fitAll() {
-      const img = document.getElementById('hero-img');
-      const name = document.getElementById('name-line');
-      const services = document.getElementById('services-line');
-      if (!img) return;
-      const target = Math.round(img.clientWidth || img.width || 300);
-      fitLineToWidth(name, target);
-      fitLineToWidth(services, target);
-    }
-
-    window.addEventListener('load', fitAll);
-    window.addEventListener('resize', () => { window.requestAnimationFrame(fitAll); });
-  </script>
 </body>
 </html>
