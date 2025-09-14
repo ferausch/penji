@@ -43,34 +43,40 @@
       margin-bottom: 2.25rem;
     }
 
+    /* Bild mit fixer Breite */
     img {
       width: 300px;
       height: auto;
-      border-radius: 0;         
+      border-radius: 0;
       filter: grayscale(100%);
-      margin-bottom: 1.5rem;    
+      margin-bottom: 1.5rem;
     }
 
+    /* Name (H1) gleiche Breite wie Bild */
     h1 {
       font-size: 2.2rem;
-      margin: 0.25rem 0 0;      
+      margin: 0.25rem 0 0;
+      max-width: 300px;          /* gleiche Breite wie Bild */
     }
 
+    /* Heilpraktikerin enger dran */
     h2 {
       font-size: 1.5rem;
       font-weight: 400;
       color: var(--gray-color);
-      margin: 0.2rem 0 1.25rem; 
+      margin: 0.2rem 0 1.25rem;
+    }
+
+    /* Services gleiche Breite wie Bild */
+    .services {
+      font-size: 1.2rem;
+      margin: 0.5rem 0 2.5rem;
+      max-width: 300px;          /* gleiche Breite wie Bild */
     }
 
     p {
       margin: 0.5rem 0;
       line-height: 1.6;
-    }
-
-    .services {
-      font-size: 1.2rem;
-      margin: 0.5rem 0 2.5rem;
     }
 
     .contact {
@@ -96,7 +102,7 @@
 
     @media (max-width: 480px) {
       main { padding-top: 3rem; }
-      img { width: 80%; }
+      img, h1, .services { width: 80%; max-width: 80%; } /* mobile: alles dynamisch */
       h1 { font-size: 1.85rem; }
       h2 { font-size: 1.25rem; }
       .services { font-size: 1.05rem; }
