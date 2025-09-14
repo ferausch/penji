@@ -6,7 +6,6 @@
   <title>Penji Svenja Menzel – Heilpraktikerin</title>
   <meta name="description" content="Heilpraktikerin in Berlin Friedrichshain. Massage, Akupunktur und Shiatsu für Entspannung, Nervensystem beruhigen und Ressourcen spüren.">
 
-  <!-- Google Font: Questrial -->
   <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet" />
 
   <style>
@@ -41,54 +40,52 @@
       line-height: 1.8;
       color: var(--gray-color);
       margin-bottom: 2.25rem;
+      max-width: 48rem;
     }
 
-    /* Bild mit fixer Breite */
-    img {
+    #hero-img {
       width: 300px;
       height: auto;
       border-radius: 0;
       filter: grayscale(100%);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
+      display: block;
     }
 
-    /* Name (H1) gleiche Breite wie Bild */
-    h1 {
+    .fit-line {
+      white-space: nowrap;
+      display: inline-block;
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    h1.fit-line {
       font-size: 2.2rem;
-      margin: 0.25rem 0 0;
-      max-width: 300px;          /* gleiche Breite wie Bild */
+      margin-top: 0.2rem;
+      margin-bottom: 0.15rem;
     }
 
-    /* Heilpraktikerin enger dran */
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 400;
       color: var(--gray-color);
-      margin: 0.2rem 0 1.25rem;
+      margin: 0.15rem 0 1.1rem;
     }
 
-    /* Services gleiche Breite wie Bild */
-    .services {
+    p.services.fit-line {
       font-size: 1.2rem;
-      margin: 0.5rem 0 2.5rem;
-      max-width: 300px;          /* gleiche Breite wie Bild */
-    }
-
-    p {
-      margin: 0.5rem 0;
-      line-height: 1.6;
+      margin: 0.4rem 0 2.2rem;
     }
 
     .contact {
       font-size: 1.05rem;
-      margin-top: 1.5rem;
+      margin-top: 1.2rem;
     }
 
     .contact a {
       color: var(--accent-color);
       text-decoration: none;
     }
-
     .contact a:hover { text-decoration: underline; }
 
     footer {
@@ -102,10 +99,8 @@
 
     @media (max-width: 480px) {
       main { padding-top: 3rem; }
-      img, h1, .services { width: 80%; max-width: 80%; } /* mobile: alles dynamisch */
-      h1 { font-size: 1.85rem; }
-      h2 { font-size: 1.25rem; }
-      .services { font-size: 1.05rem; }
+      #hero-img { width: 80%; }
+      h2 { font-size: 1.15rem; }
     }
   </style>
 </head>
@@ -117,12 +112,11 @@
       Stabilität · Autonomie · Widerstandsfähigkeit
     </p>
 
-    <img src="penji.png" alt="Penji Svenja Menzel" />
+    <img id="hero-img" src="penji.png" alt="Penji Svenja Menzel" />
 
-    <h1>Penji Svenja Menzel</h1>
+    <h1 id="name-line" class="fit-line">Penji Svenja Menzel</h1>
     <h2>Heilpraktikerin</h2>
-
-    <p class="services">Massage | Akupunktur | Shiatsu</p>
+    <p id="services-line" class="services fit-line">Massage | Akupunktur | Shiatsu</p>
 
     <div class="contact">
       <p><strong>✆</strong> <a href="tel:+4917853986550">+49 178 5398650</a>
@@ -134,5 +128,46 @@
   </main>
 
   <footer>&copy; 2025 Penji Svenja Menzel</footer>
+
+  <script>
+    function fitLineToWidth(el, targetPx, min=10, max=160) {
+      if (!el) return;
+      const cs = window.getComputedStyle(el);
+      let fontSize = parseFloat(cs.fontSize) || 24;
+      const measure = () => {
+        const prev = el.style.visibility;
+        el.style.visibility = 'hidden';
+        el.style.fontSize = fontSize + 'px';
+        const w = el.scrollWidth;
+        el.style.visibility = prev;
+        return w;
+      };
+      let currentWidth = measure();
+      if (currentWidth === 0) return;
+      const scale = targetPx / currentWidth;
+      fontSize = Math.max(min, Math.min(max, fontSize * scale));
+      el.style.fontSize = fontSize + 'px';
+      for (let i = 0; i < 2; i++) {
+        currentWidth = el.scrollWidth;
+        if (currentWidth === 0) break;
+        const delta = targetPx / currentWidth;
+        fontSize = Math.max(min, Math.min(max, fontSize * delta));
+        el.style.fontSize = fontSize + 'px';
+      }
+    }
+
+    function fitAll() {
+      const img = document.getElementById('hero-img');
+      const name = document.getElementById('name-line');
+      const services = document.getElementById('services-line');
+      if (!img) return;
+      const target = Math.round(img.clientWidth || img.width || 300);
+      fitLineToWidth(name, target);
+      fitLineToWidth(services, target);
+    }
+
+    window.addEventListener('load', fitAll);
+    window.addEventListener('resize', () => { window.requestAnimationFrame(fitAll); });
+  </script>
 </body>
 </html>
